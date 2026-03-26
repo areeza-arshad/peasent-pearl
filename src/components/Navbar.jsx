@@ -75,19 +75,19 @@ const bannerText = maxPercent > 0
       {/* Delivery threshold indicator */}
       <div className="hidden md:flex items-center ml-4 pl-4 border-l border-amber-200">
         <span className="text-xs text-amber-700">
-          Orders placed after 23 Febraury will be delivered after Eid
-          {/* Free delivery on orders above{" "} */}
-          {/* <span className="font-semibold">{FREE_DELIVERY_THRESHOLD} PKR</span> */}
+          {/* Orders placed after 23 Febraury will be delivered after Eid */}
+          Free delivery on orders above{" "}
+          <span className="font-semibold">{FREE_DELIVERY_THRESHOLD} PKR</span>
         </span>
       </div>
     </div>
   ) : (
     <div className="text-sm text-amber-800 font-medium flex items-center">
-      <span className="hidden sm:inline">Orders placed after 23 Febraury will be delivered after Eid </span>
-      <span className="sm:hidden text-center">Orders placed after 23 February will be delivered after Eid</span>
-      {/* <span className="hidden sm:inline">Free delivery on orders above </span>
+      {/* <span className="hidden sm:inline">Orders placed after 23 Febraury will be delivered after Eid </span>
+      <span className="sm:hidden text-center">Orders placed after 23 February will be delivered after Eid</span> */}
+      <span className="hidden sm:inline">Free delivery on orders above </span>
       <span className="sm:hidden">Free delivery above </span>
-      <span className="font-bold ml-1">{FREE_DELIVERY_THRESHOLD} PKR</span> */}
+      <span className="font-bold ml-1">{FREE_DELIVERY_THRESHOLD} PKR</span>
     </div>
   )}
 </div>
