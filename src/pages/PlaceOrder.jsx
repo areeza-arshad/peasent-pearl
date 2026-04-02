@@ -399,7 +399,17 @@ const handlePlaceOrder = async (e) => {
       amount: advanceAmount.toFixed(2),
       orderId,
     }).toString();
-    navigate(`/thank-you?${q}`);
+    // ✅ PRODUCTION FIX: Use window.location for navigation
+    const thankYouUrl = `/thank-you?${q}`;
+    console.log("Navigating to:", thankYouUrl);
+    
+    // Force navigation in production
+    if (window.location.hostname !== 'localhost') {
+      window.location.href = thankYouUrl;
+    } else {
+      navigate(thankYouUrl);
+    }
+    // navigate(`/thank-you?${q}`);
   } catch (err) {
     console.error("[PlaceOrder] Error:", err);
     toast.error(err.message || "Failed to place order");
@@ -631,34 +641,34 @@ const handlePlaceOrder = async (e) => {
       <div className="text-sm mt-1">IBAN: {paymentDetails.iban}</div>
 
       {/* JazzCash */}
-      <div className="flex items-center mt-2">
-        <div className="text-sm flex-1">
-          JazzCash ({paymentDetails.jazzName}): {paymentDetails.jazzNumber}
-        </div>
-        <button
-          type="button"
-          onClick={() => copyToClipboard(paymentDetails.jazzNumber)}
-          className="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded hover:bg-amber-200 transition-colors"
-        >
-          Copy
-        </button>
-      </div>
+                <div className="flex items-center mt-2">
+                  <div className="text-sm flex-1">
+                    JazzCash ({paymentDetails.jazzName}): {paymentDetails.jazzNumber}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard(paymentDetails.jazzNumber)}
+                    className="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded hover:bg-amber-200 transition-colors"
+                  >
+                    Copy
+                  </button>
+                </div>
 
-      {/* Easypaisa — NEW under COD */}
-      <div className="flex items-center mt-2">
-        <div className="text-sm flex-1">
-          Easypaisa ({paymentDetails.easypaisaName}): {paymentDetails.easypaisaNumber}
-        </div>
-        <button
-          type="button"
-          onClick={() => copyToClipboard(paymentDetails.easypaisaNumber)}
-          className="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded hover:bg-amber-200 transition-colors"
-        >
-          Copy
-        </button>
-      </div>
-    </div>
-  </>
+                {/* Easypaisa — NEW under COD */}
+                <div className="flex items-center mt-2">
+                  <div className="text-sm flex-1">
+                    Easypaisa ({paymentDetails.easypaisaName}): {paymentDetails.easypaisaNumber}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard(paymentDetails.easypaisaNumber)}
+                    className="text-xs px-2 py-1 bg-amber-100 text-amber-700 rounded hover:bg-amber-200 transition-colors"
+                  >
+                    Copy
+                  </button>
+                </div>
+                  </div>
+                </>
                     ) : form.paymentMethod === "bank" ? (
                       <div className="bg-amber-50 p-3 rounded-md mb-4">
                         <div className="text-sm font-medium">{paymentDetails.bankName}</div>
