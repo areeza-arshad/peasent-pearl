@@ -9,7 +9,7 @@ const LOCAL_KEY = "guestCart_v2";
 
 const ShopContextProvider = (props) => {
   const currency = "PKR";
-  const delivery_fee = 200;
+  const delivery_fee = 250;
   const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
