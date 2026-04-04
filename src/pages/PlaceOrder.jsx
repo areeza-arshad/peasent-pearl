@@ -399,16 +399,11 @@ const handlePlaceOrder = async (e) => {
       amount: advanceAmount.toFixed(2),
       orderId,
     }).toString();
-    // ✅ PRODUCTION FIX: Use window.location for navigation
+    
     const thankYouUrl = `/thank-you?${q}`;
     console.log("Navigating to:", thankYouUrl);
+    window.location.href = thankYouUrl;
     
-    // Force navigation in production
-    if (window.location.hostname !== 'localhost') {
-      window.location.href = thankYouUrl;
-    } else {
-      navigate(thankYouUrl);
-    }
     // navigate(`/thank-you?${q}`);
   } catch (err) {
     console.error("[PlaceOrder] Error:", err);
